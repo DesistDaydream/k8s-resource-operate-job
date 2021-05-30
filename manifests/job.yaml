@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: k8s-resource-operate-job
+spec:
+  backoffLimit: 4
+  template:
+    spec:
+      containers:
+      - args: 
+        - --ns=rabbitmq
+        - --name=rabbitmq-bj-test
+        - --crgroup=rabbitmq.com
+        - --crversion=v1beta1
+        - --crname=rabbitmqclusters
+        image: lchdzh/k8s-resource-operate-job:v0.1
+        imagePullPolicy: IfNotPresent
+        name: k8s-resource-operate-job
+      dnsPolicy: ClusterFirstWithHostNet
+      hostNetwork: true
+      restartPolicy: Never
+      serviceAccountName: k8s-resource-operate-job

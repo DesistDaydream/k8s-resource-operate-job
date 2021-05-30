@@ -1,6 +1,6 @@
-module github.com/DesistDaydream/deletecr
+module github.com/DesistDaydream/operate
 
-go 1.15
+go 1.16
 
 require (
 	k8s.io/apimachinery v0.19.2

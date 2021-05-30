@@ -1,5 +1,5 @@
 FROM golang:1.16 as builder
-WORKDIR /root/deletecr
+WORKDIR /root/operate
 
 ENV CGO_ENABLED=0 \
     GO111MODULE=on \
@@ -8,11 +8,11 @@ COPY go.mod go.mod
 COPY go.sum go.sum
 RUN go mod download && go get k8s.io/client-go@kubernetes-1.19.2
 
-COPY ./ /root/deletecr
-RUN go build -o deletecr ./*.go
+COPY ./ /root/operate
+RUN go build -o operate ./*.go
 
 FROM alpine
 RUN echo "hosts: files dns" > /etc/nsswitch.conf
-WORKDIR /root/deletecr
-COPY --from=builder /root/deletecr/deletecr /usr/local/bin/deletecr
-ENTRYPOINT ["/usr/local/bin/deletecr"]
+WORKDIR /root/operate
+COPY --from=builder /root/operate/operate /usr/local/bin/operate
+ENTRYPOINT ["/usr/local/bin/operate"]

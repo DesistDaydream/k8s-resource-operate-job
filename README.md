@@ -4,12 +4,17 @@
 可以用于在 helm uninstall 时，先删除 CR 再删除 operator 的工具
 
 ## 构建
-docker build --tag lchdzh/deletecr:v0.3 .
+docker build --tag lchdzh/k8s-resource-operate-job:v0.1 .
 
 ## 测试
+在 Kubernetes 集群中测试
+
+`kubectl apply -k ./manifests/`
+
+使用二进制测试
+```
 deletecr --ns=rabbitmq --name=rabbitmq \
 --crgroup=rabbitmq.com \
 --crversion=v1beta1 \
 --crname=rabbitmqclusters
-
-helm template test . -s templates/rabbitmqcluster/job-delete-cr.yaml  | kubectl apply -f -
+```
