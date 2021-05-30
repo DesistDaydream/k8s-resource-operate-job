@@ -13,6 +13,7 @@ spec:
         - --crgroup=rabbitmq.com
         - --crversion=v1beta1
         - --crname=rabbitmqclusters
+        - --action=delete
         image: lchdzh/k8s-resource-operate-job:v0.1
         imagePullPolicy: IfNotPresent
         name: k8s-resource-operate-job

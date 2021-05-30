@@ -10,8 +10,8 @@ resources:
 
 commonLabels:
   app.kubernetes.io/name: promk8s-resource-operate-jobetheus
-  app.kubernetes.io/version: v0.1
+  app.kubernetes.io/version: v0.2
 
 images:
 - name: lchdzh/k8s-resource-operate-job
-  newTag: v0.1
+  newTag: v0.2
